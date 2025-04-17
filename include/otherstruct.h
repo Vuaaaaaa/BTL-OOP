@@ -3,6 +3,7 @@
 #include "validate.h"
 #include "func.h"
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 class Date {
@@ -29,6 +30,11 @@ class Date {
             }
             return *this;
         }
+        string toString() {
+            stringstream ss;
+            ss << (day<10?"0":"") << day << "/" << (month<10?"0":"") << month << "/" << year;
+            return ss.str(); 
+        }
         bool operator!=(Date& other) {
             return day != other.day || month != other.month || year != other.year;
         }
@@ -37,7 +43,7 @@ class Date {
         }
         friend ostream& operator<< (ostream& out, const Date& date) {
             out << (date.day<10?"0":"") << date.day << "/"
-                << (date.month<10?"0":"") << date.month << "/" << date.year << "\n";
+                << (date.month<10?"0":"") << date.month << "/" << date.year;
             return out;
         }
         friend istream& operator>> (istream& in, Date& date) {
