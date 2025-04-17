@@ -1,0 +1,10 @@
+Ma: SPCT001
+Ten: THIT BO
+Loai hang: Thuc Pham Tuoi Song
+Xuat xu: VN
+Ngay san xuat
+01/01/2020
+Han su dung
+01/01/2025
+So luong san pham: 4
+San pham het han
