@@ -18,11 +18,9 @@ void displayMainMenu() {
     std::cout << "     HE THONG QUAN LY KHO HANG\n";
     std::cout << "===========================================\n\n";
     std::cout << "1. Quan ly nha kho\n";
-    std::cout << "2. Quan ly san pham\n";
-    std::cout << "3. Quan ly nha cung cap\n";
-    std::cout << "4. Quan ly hop dong\n";
-    std::cout << "5. Quan ly bien ban nhap kho\n";
-    std::cout << "6. Quan ly bien ban xuat kho\n";
+    std::cout << "2. Quan ly hop dong\n";
+    std::cout << "3. Quan ly bien ban nhap kho\n";
+    std::cout << "4. Quan ly bien ban xuat kho\n";
     std::cout << "0. Thoat chuong trinh\n\n";
     std::cout << "Nhap lua chon cua ban: ";
 }
@@ -32,38 +30,14 @@ void displayNhaKhoMenu() {
     std::cout << "===========================================\n";
     std::cout << "     QUAN LY NHA KHO\n";
     std::cout << "===========================================\n\n";
-    std::cout << "1. Them nha kho\n";
-    std::cout << "2. Xoa nha kho\n";
-    std::cout << "3. Sua thong tin nha kho\n";
-    std::cout << "4. Xem danh sach nha kho\n";
-    std::cout << "5. Sap xep nha kho theo so luong tang dan\n";
-    std::cout << "6. Tim kiem san pham theo ma\n";
-    std::cout << "7. Tim kiem san pham theo ten\n";
-    std::cout << "8. Luu du lieu nha kho\n";
-    std::cout << "0. Quay lai\n\n";
-    std::cout << "Nhap lua chon cua ban: ";
-}
-
-void displaySanPhamMenu() {
-    clearScreen();
-    std::cout << "===========================================\n";
-    std::cout << "     QUAN LY SAN PHAM\n";
-    std::cout << "===========================================\n\n";
-    std::cout << "1. Them san pham\n";
-    std::cout << "2. Xem san pham\n";
-    std::cout << "3. Kiem tra thoi han cua san pham\n";
-    std::cout << "4. Luu san pham\n";
-    std::cout << "0. Quay lai\n\n";
-    std::cout << "Nhap lua chon cua ban: ";
-}
-
-void displayNhaCungCapMenu() {
-    clearScreen();
-    std::cout << "===========================================\n";
-    std::cout << "     QUAN LY NHA CUNG CAP\n";
-    std::cout << "===========================================\n\n";
-    std::cout << "1. Them nha cung cap\n";
-    std::cout << "2. Xem danh sach nha cung cap\n";
+    std::cout << "1. Xoa san pham trong nha kho\n";
+    std::cout << "2. Sua thong tin san pham trong nha kho\n";
+    std::cout << "3. Xem danh sach san pham trong kho\n";
+    std::cout << "4. Sap xep nha kho theo so luong tang dan\n";
+    std::cout << "5. Tim kiem san pham theo ma\n";
+    std::cout << "6. Tim kiem san pham theo ten\n";
+    std::cout << "7. Kiem tra thoi han cua san pham\n";
+    std::cout << "8. Xuat du lieu ra file\n";
     std::cout << "0. Quay lai\n\n";
     std::cout << "Nhap lua chon cua ban: ";
 }
@@ -76,11 +50,11 @@ void displayHopDongMenu() {
     std::cout << "1. Them hop dong\n";
     std::cout << "2. Xem danh sach hop dong\n";
     std::cout << "3. Sap xep danh sach hop dong\n";
-    std::cout << "4. Luu danh sach hop dong\n";
-    std::cout << "5. Tim kiem hop dong theo ma\n";
-    std::cout << "6. Tim kiem hop dong theo ten\n";
-    std::cout << "7. Sua hop dong\n";
-    std::cout << "8. Xoa hop dong\n";
+    std::cout << "4. Tim kiem hop dong theo ma hop dong\n";
+    std::cout << "5. Tim kiem hop dong theo ten nha cung cap\n";
+    std::cout << "6. Sua hop dong\n";
+    std::cout << "7. Xoa hop dong\n";
+    std::cout << "8. Xuat du lieu ra file\n";
     std::cout << "0. Quay lai\n\n";
     std::cout << "Nhap lua chon cua ban: ";
 }
@@ -91,9 +65,8 @@ void displayBienBanNhapKhoMenu() {
     std::cout << "     QUAN LY BIEN BAN NHAP KHO\n";
     std::cout << "===========================================\n\n";
     std::cout << "1. Tao bien ban nhap kho\n";
-    std::cout << "2. Xoa bien ban nhap kho\n";
-    std::cout << "3. Sua bien ban nhap kho\n";
-    std::cout << "4. Xem danh sach bien ban nhap kho\n";
+    std::cout << "2. Hien thi danh sach bien ban nhap kho\n";
+    std::cout << "3. Xoa bien ban nhap kho\n";
     std::cout << "0. Quay lai\n\n";
     std::cout << "Nhap lua chon cua ban: ";
 }
@@ -103,10 +76,9 @@ void displayBienBanXuatKhoMenu() {
     std::cout << "===========================================\n";
     std::cout << "     QUAN LY BIEN BAN XUAT KHO\n";
     std::cout << "===========================================\n\n";
-    std::cout << "1. Tao bien ban xuat kho\n";
+    std::cout << "1. Them bien ban xuat kho\n";
+    std::cout << "2. Hien thi danh sach bien ban xuat kho\n";
     std::cout << "2. Xoa bien ban xuat kho\n";
-    std::cout << "3. Sua bien ban xuat kho\n";
-    std::cout << "4. Xem danh sach bien ban xuat kho\n";
     std::cout << "0. Quay lai\n\n";
     std::cout << "Nhap lua chon cua ban: ";
 }

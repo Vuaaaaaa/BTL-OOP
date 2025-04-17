@@ -25,11 +25,11 @@ class BienBanNhapKho {
 
 
 void BienBanNhapKho::nhapBaoCao(DanhSachHopDong& dsHopDong, NhaKho& nhaKho) {
-    HopDong* hopDong = dsHopDong.timKiem();
+    HopDong* hopDong = dynamic_cast<HopDong*> (dsHopDong.timKiem());
     if (hopDong) {
         NhaCungCap& nhaCungCap = *(hopDong);
-        tenNhaCungCap = nhaCungCap.getTen();
-        if (static_cast<HopDong>(nhaCungCap).kiemTraThoiHan()) {
+        tenNhaCungCap = hopDong->getTen();
+        if (hopDong->kiemTraThoiHan()) {
             for (auto& sp : nhaCungCap.getSanPham()) {
                 pair<int, SanPham> tmp = nhaKho.them(sp);
                 sanPhamNhapKho.push_back(make_pair(tmp.first, tmp.second.getMa()));
@@ -40,9 +40,10 @@ void BienBanNhapKho::nhapBaoCao(DanhSachHopDong& dsHopDong, NhaKho& nhaKho) {
     } else {
         cout << "Khong tim thay nha cung cap!\n";
     }
+    nhaKho.luu();
 }
 
-void BienBanNhapKho::hienThiBaoCao() {
+void BienBanNhapKho::hienThiBaoCao() {  
     if (tenNhaCungCap != "Unknown") {
         cout << "Ten nha cung cap: " << tenNhaCungCap << endl;
         cout << "Danh sach san pham nhap kho: " << endl;

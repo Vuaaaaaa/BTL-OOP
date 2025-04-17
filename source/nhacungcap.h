@@ -1,6 +1,7 @@
 #ifndef NHACUNGCAP_H
 #define NHACUNGCAP_H
 #include "sanpham.h"
+#include "nhakho.h"
 #include <iostream>
 #include <math.h>
 #include <vector>
@@ -69,38 +70,56 @@ class NhaCungCap{
 };
 
 void NhaCungCap::nhap() {
+    bool valid;
     do {
+        valid = true;
         cout << "Nhap ma nha cung cap: ";
         getline(cin, maNhaCungCap);
+        if (!checkMa(maNhaCungCap, 5)) {
+            cout << "Ma nha cung cap khong hop le!\n";
+            valid = false;
+            continue;
+        }
         cout << "Nhap ten nha cung cap: ";
         getline(cin, tenNhaCungCap);
+        if (tenNhaCungCap.empty()) {
+            cout << "Ten nha cung cap khong duoc de trong!\n";
+            valid = false;
+            continue;
+        }
         cout << "Nhap thong tin lien he: ";
         getline(cin, thongTinLienHe);
-        cout << "Nhap so san pham cung cap: ";
-        int n;
-        cin >> n;
-        cin.ignore(100, '\n');
-        for (int i = 0; i < n; i++) {
-            SanPham x;
-            x.nhap();
-            sanPhamCungCap.push_back(x);
-            if (sanPhamCungCap.size() == 1) {
-                string tmp = "SP" + string(1, maNhaCungCap[0]) + string(1, maNhaCungCap[1]) + "00" + to_string(1);
-                sanPhamCungCap[i].setMa(tmp);
-            } else {
-                int tmp = (sanPhamCungCap[i-1].getMa()[4] - '0')*100 + 
-                        (sanPhamCungCap[i-1].getMa()[5] - '0')*10 +
-                        (sanPhamCungCap[i-1].getMa()[6] - '0');
-                int ma = max((int)sanPhamCungCap.size(), tmp+1);
-                string tmp1 = "SP" + string(1, maNhaCungCap[0]) + string(1, maNhaCungCap[1]);
-                tmp1 += ma < 10 ? "00" : (ma < 100 ? "0" : "");
-                sanPhamCungCap[i].setMa(tmp1 + to_string(ma));
-            }
+        if (thongTinLienHe.empty()) {
+            cout << "Thong tin lien he khong duoc de trong!\n";
+            valid = false;
+            continue;
         }
-        if (!checkMa(maNhaCungCap, 5) || tenNhaCungCap.empty() || thongTinLienHe.empty()) {
+        if(!valid) {
             cout << "Nhap lai\n";
+            cin.ignore();
         }
-    } while (!checkMa(maNhaCungCap, 5) || tenNhaCungCap.empty() || thongTinLienHe.empty());
+    } while (!valid);
+    cout << "Nhap so san pham cung cap: ";
+    int n;
+    cin >> n;
+    cin.ignore(100, '\n');
+    for (int i = 0; i < n; i++) {
+        SanPham x;
+        x.nhap();
+        sanPhamCungCap.push_back(x);
+        if (sanPhamCungCap.size() == 1) {
+            string tmp = "SP" + string(1, maNhaCungCap[0]) + string(1, maNhaCungCap[1]) + "00" + to_string(1);
+            sanPhamCungCap[i].setMa(tmp);
+        } else {
+            int tmp = (sanPhamCungCap[i-1].getMa()[4] - '0')*100 + 
+                    (sanPhamCungCap[i-1].getMa()[5] - '0')*10 +
+                    (sanPhamCungCap[i-1].getMa()[6] - '0');
+            int ma = max((int)sanPhamCungCap.size(), tmp+1);
+            string tmp1 = "SP" + string(1, maNhaCungCap[0]) + string(1, maNhaCungCap[1]);
+            tmp1 += ma < 10 ? "00" : (ma < 100 ? "0" : "");
+            sanPhamCungCap[i].setMa(tmp1 + to_string(ma));
+        }
+    }
 }
 
 void NhaCungCap::hienThi() {

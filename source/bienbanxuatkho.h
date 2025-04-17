@@ -13,7 +13,6 @@ class BienBanXuatKho {
     private:
         string nguoiXuatKho;
         string nguoiNhan;
-        Date ngayXuat;
         vector<pair<int, SanPham>> sanphamXuatKho;
     public:
         BienBanXuatKho() {
@@ -21,7 +20,6 @@ class BienBanXuatKho {
         }
         string getNguoiXuatKho() {return nguoiXuatKho;}
         string getNguoiNhan() {return nguoiNhan;}
-        Date getNgayXuat() {return ngayXuat;}
         vector<pair<int, SanPham>> getSanPhamXuatKho() {return sanphamXuatKho;}
         void nhap(NhaKho&);
         void hienthi();
@@ -34,8 +32,6 @@ void BienBanXuatKho::nhap(NhaKho& nk) {
     getline(cin, nguoiXuatKho);
     cout << "Nhap nguoi nhan: ";
     getline(cin, nguoiNhan);
-    cout << "Nhap ngay xuat: ";
-    cin >> ngayXuat;
     int n;
     cout << "Nhap so san pham muon xuat: ";
     cin >> n;
@@ -52,10 +48,6 @@ void BienBanXuatKho::nhap(NhaKho& nk) {
         pair<int, SanPham>* sp = nk.timKiem(ma);
         Date ngaySX = sp->second.getNgaySX();
         Date hsd = sp->second.getHsd();
-        if(ngaySX > ngayXuat || ngayXuat > hsd) {
-            cout << "Ngay xuat khong hop le";
-            continue;
-        }
         cout << "Nhap so luong muon xuat: ";
         cin >> soLuong;
         if(soLuong > sp->first) {
@@ -68,16 +60,16 @@ void BienBanXuatKho::nhap(NhaKho& nk) {
                 return p.second.getMa() == ma;
             }), ds.end());
         }
+        sp->first -= soLuong;
         sanphamXuatKho.push_back({soLuong, sp->second});
+        luu();
     }
-    luu();
 }
 
 void BienBanXuatKho::hienthi() {
     cout << "Nguoi xuat kho: " << nguoiXuatKho << "\n";
     cout << "Nguoi nhan: " << nguoiNhan << "\n";
-    cout << "Ngay xuat: " << ngayXuat << "\n";
-    for(auto x: sanphamXuatKho) {
+    for(auto& x: sanphamXuatKho) {
         cout << "So luong: " << x.first << "\n";
         x.second.hienThi();
     }
@@ -91,9 +83,6 @@ void BienBanXuatKho::load() {
     }
     getline(inf, nguoiXuatKho);
     getline(inf, nguoiNhan);
-    string dateLine;
-    getline(inf, dateLine);
-    ngayXuat.parseString(dateLine);
     string line;
     getline(inf, line);
     int n = stoi(line);
@@ -115,11 +104,11 @@ void BienBanXuatKho::luu() {
         cerr << "Khong mo duoc file de luu!\n";
         return;
     }
-    outf << nguoiXuatKho << "\n";
-    outf << nguoiNhan << "\n";
-    outf << ngayXuat;
+    outf << sanphamXuatKho.size() << endl;
+    outf << nguoiXuatKho << endl;
+    outf << nguoiNhan << endl;
     for (auto& x : sanphamXuatKho) {
-        outf << x.first << " " << "\n";
+        outf << x.first << endl;
         x.second.luu(outf);
     }
 }

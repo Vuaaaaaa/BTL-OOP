@@ -53,7 +53,6 @@ class HopDong : public NhaCungCap, public ObjectInterface {
         }
         Date getNgayKy() { return ngayKyHopDong; }
         Date getNgayHetHan() { return ngayHetHan; }
-
         void luu(ofstream&) override;
         void nhap() override;
         void hienThi() override;
@@ -71,7 +70,8 @@ void HopDong::luu(ofstream& outf) {
         i.luu(outf);
     }
     outf << maHopDong << endl;
-    outf << ngayKyHopDong << ngayHetHan;
+    outf << ngayKyHopDong << endl;
+    outf << ngayHetHan << endl;
 }
 
 void HopDong::nhap() {
@@ -84,17 +84,39 @@ void HopDong::nhap() {
         cout << "Nhap ngay het han\n";
         cin >> ngayHetHan;
         cin.ignore(100, '\n');
-        if ( ngayKyHopDong > ngayHetHan || !checkMa(maHopDong, 5) || ngayKyHopDong.gNow()) {
+        if ( ngayKyHopDong >= ngayHetHan || !checkMa(maHopDong, 5) || ngayKyHopDong.gNow()) {
             cout << "nhap loi\n";
         }
-    } while (ngayKyHopDong > ngayHetHan || !checkMa(maHopDong, 5) || ngayKyHopDong.gNow());
+    } while (ngayKyHopDong >= ngayHetHan || !checkMa(maHopDong, 5) || ngayKyHopDong.gNow());
+
 }
 
 void HopDong::hienThi() {
-    NhaCungCap::hienThi();
+    cout << "Ma nha cung cap: " << maNhaCungCap << endl;
+    cout << "Ten nha cung cap: " << tenNhaCungCap << endl;
+    cout << "Thong tin lien he: " << thongTinLienHe << endl;
+    cout << "Danh sach san pham cung cap:" << endl;
+    if (!sanPhamCungCap.empty()) {
+        cout << left << setw(10) << "Ma"
+             << left << setw(25) << "LoaiHang"
+             << left << setw(15) << "Ten"
+             << left << setw(15) << "XuatXu"
+             << left << setw(20) << "NgaySX"
+             << left << setw(20) << "HanSD" << endl;
+        cout << setfill('-') << setw(85) << "" << setfill(' ') << endl;
+        for (auto& sp : sanPhamCungCap) {
+            cout << left << setw(10) << sp.getMa()
+                 << left << setw(25) << loai.at(sp.getLoaiHang())
+                 << left << setw(15) << sp.getTen()
+                 << left << setw(15) << sp.getXuatXu()
+                 << left << setw(20) << sp.getNgaySX().toString()
+                 << left << setw(20) << sp.getHsd().toString() << endl;
+        }
+    }
     cout << "Ma hop dong: " << maHopDong << "\n";
-    cout << "Ngay ky hop dong: " << ngayKyHopDong;
-    cout << "Ngay het han: " << ngayHetHan;
+    cout << "Ngay ky hop dong: " << ngayKyHopDong << "\n";
+    cout << "Ngay het han: " << ngayHetHan << "\n";
+    cout << string(85, '-') << endl;
 }
 
 void HopDong::xuatFile(ofstream& outf) {

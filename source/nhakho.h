@@ -30,6 +30,7 @@ class NhaKho : public ListInterface<pair<int, SanPham>> {
         void sua() override; 
         void luu(string) override;
         void sapXep() override;
+        void KtThoiHan();
         pair<int, SanPham>* timKiem(string ten) override;
         pair<int, SanPham>* timKiem() override;
 };
@@ -102,6 +103,7 @@ pair<int, SanPham> NhaKho::them(SanPham& SP) {
     } else {
         sp.push_back(make_pair(soLuong, SP));
         cout << "Da them san pham vao kho\n";
+        cin.ignore();
     }
     return {soLuong, SP};
 }
@@ -126,9 +128,9 @@ void NhaKho::load() {
 }
 
 void NhaKho::hienThi() {
-    for(auto& x: sp) {
-        x.second.hienThi();
+    for(auto x: sp) {
         cout << "So luong: " << x.first << endl;
+        x.second.hienThi();
     }
 }
 
@@ -140,7 +142,6 @@ void NhaKho::xoa() {
     auto it = remove_if(sp.begin(), sp.end(), [&](pair<int, SanPham>& p){
         return p.second.getMa() == ma;
     });
-
     if(it != sp.end()) {
         sp.erase(it, sp.end());
         cout << "San pham da duoc xoa";
@@ -150,7 +151,6 @@ void NhaKho::xoa() {
     }
     luu();
 }
-
 void NhaKho::sua() {
     string ma;
     cin.ignore(100, '\n');
@@ -167,7 +167,6 @@ void NhaKho::sua() {
         cout << "Khong tin thay ma san pham can sua\n";
     }
 }
-
 
 void NhaKho::sapXep() {
     NhaKho tmp = sp;
@@ -227,6 +226,15 @@ pair<int, SanPham>* NhaKho::timKiem() {
         }
     }
     return nullptr;
+}
+
+void NhaKho::KtThoiHan() {
+    cout << "Danh sach san pham con han: \n";
+    for(auto x: sp) {
+        if(x.second.kiemTraThoiHan()) {
+            x.second.hienThi();
+        }
+    }
 }
 
 #endif

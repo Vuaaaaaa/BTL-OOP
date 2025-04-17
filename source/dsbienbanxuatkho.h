@@ -51,7 +51,7 @@ class DsBienBanXuatKho {
             }
         }
         void hienThi() {
-            cout << "Danh sach bien ban nhap kho:\n";
+            cout << "Danh sach bien ban xuat kho:\n";
             for (auto& bb : dsBienBanXuatKho) {
                 bb.hienthi();
             }
@@ -67,7 +67,7 @@ class DsBienBanXuatKho {
             dsBienBanXuatKho.erase(find_if(dsBienBanXuatKho.begin(), dsBienBanXuatKho.end(), [&](BienBanXuatKho& xk) {
                 return compare(xk.getNguoiXuatKho(), ten);
             }));
-            ofstream outf{"../data/bienbanxuatkho.txt", ios::trunc};
+            ofstream outf{"../data/bienbanxuatkho.txt", ios::app};
             if (!outf) {
                 cerr << "Loi mo file\n";
                 return;

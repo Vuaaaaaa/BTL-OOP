@@ -25,7 +25,7 @@ class DsBienBanNhapKho {
             }
         }
         void luu() {
-            ofstream outf{"../data/bienbannhapkho.txt", ios::app};
+            ofstream outf{"../data/bienbannhapkho.txt", ios::trunc};
             if (!outf) {
                 cerr << "Loi mo file\n";
                 return;
@@ -35,7 +35,7 @@ class DsBienBanNhapKho {
                 bb.luuBaoCao(outf);
             }
         }
-        void them(DanhSachHopDong & dsHopDong, NhaKho& nhaKho) {
+        void them(DanhSachHopDong& dsHopDong, NhaKho& nhaKho) {
             cout << "So bien ban nhap kho muon them: ";
             int n;
             cin >> n;
@@ -67,7 +67,7 @@ class DsBienBanNhapKho {
             dsBienBanNhapKho.erase(find_if(dsBienBanNhapKho.begin(), dsBienBanNhapKho.end(), [&](BienBanNhapKho& bb) {
                 return compare(bb.getTenNhaCungCap(), ten);
             }));
-            ofstream outf{"../data/bienbannhapkho.txt", ios::trunc};
+            ofstream outf{"../data/bienbannhapkho.txt", ios::app};
             if (!outf) {
                 cerr << "Loi mo file\n";
                 return;
@@ -78,6 +78,5 @@ class DsBienBanNhapKho {
             }
         }
 };
-
 
 #endif

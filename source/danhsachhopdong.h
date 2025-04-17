@@ -51,6 +51,7 @@ void DanhSachHopDong::them() {
         dsHopDong.push_back(x);
     }
     cout << "Them thanh cong\n";
+    luu("../data/hopdong.txt");
 }
 
 void DanhSachHopDong::hienThi() {
@@ -128,7 +129,7 @@ void DanhSachHopDong::sapXep() {
 }
 
 void DanhSachHopDong::luu(string s = "../data/hopdong.txt") {
-    ofstream outf(s, ios::app);
+    ofstream outf(s, ios::trunc);
     if (!outf) {
         cerr << "Loi mo file\n";
         return;
@@ -180,18 +181,23 @@ HopDong* DanhSachHopDong::timKiem(string ma) {
 }
 
 HopDong* DanhSachHopDong::timKiem() {
-    cout << "Nhap ten nha cung cap muon tim kiem: ";
     string ten;
-    getline(cin, ten);
-    if (ten.empty()) {
-        cout << "Ten hop dong khong duoc de trong\n";
-        return nullptr;
+    while (true) {
+        cout << "Nhap ten nha cung cap muon tim kiem: ";
+        getline(cin, ten);
+        if (!ten.empty()) {
+            break;
+        } else {
+            cout << "Ten nha cung cap khong duoc de trong. Vui long nhap lai.\n";
+        }
     }
+
     for (auto& i : dsHopDong) {
         if (compare(i.getTen(), ten)) {
             return &i;
         }
     }
+    cout << "Khong tim thay hop dong.\n";
     return nullptr;
 }
 
