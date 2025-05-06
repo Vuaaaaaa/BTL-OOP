@@ -33,6 +33,7 @@ void BienBanNhapKho::nhapBaoCao(DanhSachHopDong& dsHopDong, NhaKho& nhaKho) {
             for (auto& sp : nhaCungCap.getSanPham()) {
                 pair<int, SanPham> tmp = nhaKho.them(sp);
                 sanPhamNhapKho.push_back(make_pair(tmp.first, tmp.second.getMa()));
+                nhaKho.luu();
             }
         } else {
             cout << "Nha cung cap da het thoi han hop dong!\n";
@@ -40,7 +41,6 @@ void BienBanNhapKho::nhapBaoCao(DanhSachHopDong& dsHopDong, NhaKho& nhaKho) {
     } else {
         cout << "Khong tim thay nha cung cap!\n";
     }
-    nhaKho.luu();
 }
 
 void BienBanNhapKho::hienThiBaoCao() {  
