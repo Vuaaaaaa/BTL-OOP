@@ -110,7 +110,7 @@ void NhaCungCap::nhap(string maHD) {
         sanPhamCungCap.push_back(x);
         string maSuDung = maHD.empty() ? maNhaCungCap : maHD;
         if (sanPhamCungCap.size() == 1) {
-            string tmp = "SP" + maSuDung.substr(maSuDung.length() - 3);
+            string tmp = "SP" + maSuDung.substr(maSuDung.length() - 3) + "001";
             sanPhamCungCap[i].setMa(tmp);
         } else {
             int tmp = (sanPhamCungCap[i-1].getMa()[5] - '0')*100 + 
