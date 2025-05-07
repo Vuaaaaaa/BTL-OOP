@@ -2,6 +2,7 @@
 #define NHACUNGCAP_H
 #include "sanpham.h"
 #include "nhakho.h"
+#include "hopdong.h"
 #include <iostream>
 #include <math.h>
 #include <vector>
@@ -65,11 +66,11 @@ class NhaCungCap{
             && (thongTinLienHe == another.thongTinLienHe);
         }
 
-        virtual void nhap();
+        virtual void nhap(string maHD = "");
         virtual void hienThi();
 };
 
-void NhaCungCap::nhap() {
+void NhaCungCap::nhap(string maHD) {
     bool valid;
     do {
         valid = true;
@@ -107,15 +108,16 @@ void NhaCungCap::nhap() {
         SanPham x;
         x.nhap();
         sanPhamCungCap.push_back(x);
+        string maSuDung = maHD.empty() ? maNhaCungCap : maHD;
         if (sanPhamCungCap.size() == 1) {
-            string tmp = "SP" + string(1, maNhaCungCap[0]) + string(1, maNhaCungCap[1]) + "00" + to_string(1);
+            string tmp = "SP" + maSuDung.substr(maSuDung.length() - 3);
             sanPhamCungCap[i].setMa(tmp);
         } else {
-            int tmp = (sanPhamCungCap[i-1].getMa()[4] - '0')*100 + 
-                    (sanPhamCungCap[i-1].getMa()[5] - '0')*10 +
-                    (sanPhamCungCap[i-1].getMa()[6] - '0');
+            int tmp = (sanPhamCungCap[i-1].getMa()[5] - '0')*100 + 
+                    (sanPhamCungCap[i-1].getMa()[6] - '0')*10 +
+                    (sanPhamCungCap[i-1].getMa()[7] - '0');
             int ma = max((int)sanPhamCungCap.size(), tmp+1);
-            string tmp1 = "SP" + string(1, maNhaCungCap[0]) + string(1, maNhaCungCap[1]);
+            string tmp1 = "SP" + maSuDung.substr(maSuDung.length() - 3);
             tmp1 += ma < 10 ? "00" : (ma < 100 ? "0" : "");
             sanPhamCungCap[i].setMa(tmp1 + to_string(ma));
         }

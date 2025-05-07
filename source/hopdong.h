@@ -75,20 +75,25 @@ void HopDong::luu(ofstream& outf) {
 }
 
 void HopDong::nhap() {
-    NhaCungCap::nhap();
+    cout << "Nhap ma hop dong: ";
+    cin >> maHopDong;
+    cin.ignore(100, '\n');
+    if (!checkMa(maHopDong, 5)) {
+        cout << "Ma hop dong khong hop le!\n";
+        return;
+    }
+    
+    NhaCungCap::nhap(maHopDong);
     do {
-        cout << "Nhap ma hop dong: ";
-        cin >> maHopDong;
         cout << "Nhap ngay ky hop dong\n";
         cin >> ngayKyHopDong;
         cout << "Nhap ngay het han\n";
         cin >> ngayHetHan;
         cin.ignore(100, '\n');
-        if ( ngayKyHopDong >= ngayHetHan || !checkMa(maHopDong, 5) || ngayKyHopDong.gNow()) {
-            cout << "nhap loi\n";
+        if (ngayKyHopDong >= ngayHetHan || ngayKyHopDong.gNow()) {
+            cout << "Ngay khong hop le, vui long nhap lai\n";
         }
-    } while (ngayKyHopDong >= ngayHetHan || !checkMa(maHopDong, 5) || ngayKyHopDong.gNow());
-
+    } while (ngayKyHopDong >= ngayHetHan || ngayKyHopDong.gNow());
 }
 
 void HopDong::hienThi() {
