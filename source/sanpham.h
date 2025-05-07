@@ -87,21 +87,21 @@ class SanPham : public ObjectInterface {
             }
         }
         void inTieuDe() {
-            cout << left << setw(10) << "Ma"
-                 << left << setw(15) << "LoaiHang"
-                 << left << setw(15) << "Ten"
+            cout << left << setw(12) << "Ma"
+                 << left << setw(25) << "LoaiHang"
+                 << left << setw(20) << "Ten"
                  << left << setw(15) << "XuatXu"
                  << left << setw(20) << "NgaySX"
                  << left << setw(20) << "HanSD";
         }
         void phanCach() {
-            cout << setfill('-') << setw(85) << "" << setfill(' ') << endl;
+            cout << setfill('-') << setw(112) << "" << setfill(' ') << endl;
         }
         
         void inDL() {
-            cout << left << setw(10) << ma
-                 << left << setw(15) << loai.at(loaiHang)
-                 << left << setw(15) << ten
+            cout << left << setw(12) << ma
+                 << left << setw(25) << loai.at(loaiHang)
+                 << left << setw(20) << ten
                  << left << setw(15) << xuatXu
                  << left << setw(20) << ngaySX.toString()
                  << left << setw(20) << hsd.toString() << endl;
@@ -141,10 +141,8 @@ void SanPham::xuatFile(ofstream& outf) {
     outf << "Ten: " << ten << "\n";
     outf << "Loai hang: " << loai.at(loaiHang) << "\n";
     outf << "Xuat xu: " << xuatXu << "\n";
-    outf << "Ngay san xuat\n";
-    outf << ngaySX;
-    outf << "Han su dung\n";
-    outf << hsd;
+    outf << "Ngay san xuat: " << ngaySX << "\n";
+    outf << "Han su dung: " << hsd << "\n";
 }
 
 void SanPham::nhapFile(ifstream& inf) {

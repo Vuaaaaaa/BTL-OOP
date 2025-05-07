@@ -20,7 +20,7 @@ class DsBienBanXuatKho {
             int n = stoi(s);
             for (int i = 0; i < n; i++) {
                 BienBanXuatKho xk;
-                xk.load();
+                xk.load(inf);
                 dsBienBanXuatKho.push_back(xk);
             }
         }
@@ -32,7 +32,7 @@ class DsBienBanXuatKho {
             }
             outf << dsBienBanXuatKho.size() << "\n";
             for (auto& xk : dsBienBanXuatKho) {
-                xk.luu();
+                xk.luu(outf);
             }
         }
         void them(NhaKho& nhaKho) {
@@ -55,6 +55,9 @@ class DsBienBanXuatKho {
             for (auto& bb : dsBienBanXuatKho) {
                 bb.hienthi();
             }
+            if (dsBienBanXuatKho.empty()) {
+                cout << "Chua co bien ban xuat kho\n";
+            }
         }
         void xoa() {
             cout << "Nhap ten nguoi xuat kho muon xoa: ";
@@ -74,7 +77,7 @@ class DsBienBanXuatKho {
             }
             outf << dsBienBanXuatKho.size() << "\n";
             for (auto& xk : dsBienBanXuatKho) {
-                xk.luu();
+                xk.luu(outf);
             }
         }
 };

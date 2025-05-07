@@ -70,11 +70,17 @@ void BienBanNhapKho::loadBaoCao(ifstream& inf) {
     getline(inf, s);
     int n = stoi(s);
     sanPhamNhapKho.resize(n);
+    
     for (int i = 0; i < n; i++) {
         string line;
         getline(inf, line);
         stringstream ss(line);
-        ss >> sanPhamNhapKho[i].first >> sanPhamNhapKho[i].second;
+        int soLuong;
+        string maSP;
+        ss >> soLuong >> maSP;
+        sanPhamNhapKho[i] = {soLuong, maSP};
+        SanPham sp; 
+        sp.setMa(maSP); 
     }
 }
 

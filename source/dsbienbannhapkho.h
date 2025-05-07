@@ -55,6 +55,9 @@ class DsBienBanNhapKho {
             for (auto& bb : dsBienBanNhapKho) {
                 bb.hienThiBaoCao();
             }
+            if (dsBienBanNhapKho.empty()) {
+                cout << "Chua co bao cao nhap kho!\n";
+            }
         }
         void xoa() {
             cout << "Nhap ten nha cung cap muon xoa: ";

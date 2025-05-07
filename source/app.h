@@ -22,10 +22,11 @@ class App {
         DsBienBanNhapKho dsBienBanNhapKho;
     public:
         App() {
+            ds.load();
+            nk.load();
+            dsBienBanNhapKho.load();
+            dsBienBanXuatKho.load();
             while (running) {
-                ds.load();
-                dsBienBanNhapKho.load();
-                dsBienBanXuatKho.load();
                 displayMainMenu();
                 cin >> choice;
                 switch (choice) {

@@ -58,6 +58,7 @@ void NhaKho::xuatFile(string file) {
     }
     for (auto p : sp) {
         p.second.xuatFile(outf);
+        cout << "\n";
         outf << "So luong san pham: " << p.first << "\n";
         if (p.second.kiemTraThoiHan()) {
             outf << "San pham con han\n";
@@ -100,12 +101,13 @@ pair<int, SanPham> NhaKho::them(SanPham& SP) {
     if (p) {
         p->first += soLuong;
         cout << "Da them so luong\n";
+        return {p->first, p->second};
     } else {
         sp.push_back(make_pair(soLuong, SP));
         cout << "Da them san pham vao kho\n";
         cin.ignore();
+        return {soLuong, SP};
     }
-    return {soLuong, SP};
 }
 
 void NhaKho::load() {
